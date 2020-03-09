@@ -8,6 +8,7 @@ def validate_second_operand(func):
         if not isinstance(args[1], SuperList):
             raise Exception('Второй операнд не суперсписок')
         return func(*args)
+
     return wrapper
 
 
@@ -54,4 +55,7 @@ class SuperList(list):
         return sum(self) != sum(other)
 
 
-print(SuperList([1, 2]) + SuperList([3, 4]) + SuperList([5, 6, 7]) == SuperList([14, 14]))
+a = SuperList([1, 2, 3, 4])
+b = SuperList([1, 4, 7, 2])
+print(a - b)
+print(a)
