@@ -55,7 +55,7 @@ class SuperList(list):
         return sum(self) != sum(other)
 
 
-a = SuperList([1, 2, 3, 4])
-b = SuperList([1, 4, 7, 2])
-print(a - b)
-print(a)
+# a = SuperList([1, 2, 3, 4])
+# b = SuperList([1, 4, 7, 2])
+# print(a - b)
+# print(a)

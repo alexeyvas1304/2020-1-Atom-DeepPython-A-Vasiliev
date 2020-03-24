@@ -26,8 +26,10 @@ class Currency:
         elif isinstance(other, Currency):
             if other.currency is not None and self.currency is not None:
                 return Currency(self.number+other.number*courses[self.currency]/courses[other.currency], self.currency)
-            else:
+            elif other.currency is None:
                 return Currency(self.number+other.number, self.currency)
+            elif self.currency is None:
+                return Currency(self.number + other.number, other.currency)
         else:
             print('Сложение невозможно')
 
@@ -41,10 +43,10 @@ class Currency:
             print('Нет такой валюты')
 
     def __str__(self):
-        return f'{self.number:.3f} {self.currency}' if self.currency else f'{self.number:.3f}'
+        return numbers.format_currency(self.number, self.currency, locale='ru') if self.currency else str(self.number)
 
     def __repr__(self):
-        return numbers.format_currency(self.number, self.currency, locale='ru') if self.currency else str(self.number)
+        return f'Currency({self.number}, {self.currency})'
 
 
 # a = Currency(500)
