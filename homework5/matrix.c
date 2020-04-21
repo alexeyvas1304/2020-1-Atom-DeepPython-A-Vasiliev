@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <malloc.h>
 
+//https://docs.python.org/3/extending/newtypes_tutorial.html
+
 typedef struct {
     PyObject_HEAD
     PyObject *matrix;
@@ -100,7 +102,7 @@ static PyObject * mult_number (MatrixObject* self, PyObject* args) {
             {
                 PyList_SetItem(PyList_GetItem(self->matrix,i),j,Py_BuildValue("l", n * PyLong_AsLong(PyList_GetItem(PyList_GetItem(self->matrix,i),j))));
             }
-    return Py_BuildValue("O",self);
+    return Py_BuildValue("O",self->matrix);
 }
 
 static PyObject * divide_number (MatrixObject* self, PyObject* args) {
@@ -133,8 +135,8 @@ static PyObject * transpose (MatrixObject* self) {
         PyList_Append(res_matrix,row);
         row = PyList_New(0);
         }
-    new_matrix->matrix = res_matrix;
-    return Py_BuildValue("O",new_matrix);
+    self->matrix = res_matrix;
+    return Py_BuildValue("O", self->matrix);
 }
 
 static PyObject * contains (MatrixObject* self, PyObject* args) {

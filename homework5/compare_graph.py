@@ -15,7 +15,7 @@ def matmul(a, b):
 
 
 final_c_time, final_np_time, final_custom_python_time = [], [], []
-for i in range(2, 11):
+for i in range(2, 21):
     c_time, np_time, custom_python_time = [], [], []
     for _ in range(15):
         a = [[randint(1, 10) for _ in range(i)] for _ in range(i)]
@@ -46,11 +46,12 @@ for i in range(2, 11):
     final_np_time.append(sum(np_time) / 15 * 10 ** 6)
     final_custom_python_time.append(sum(custom_python_time) / 15 * 10 ** 6)
 fig, ax = plt.subplots()
-plt.plot(range(2, 11), final_c_time, label='C')
-plt.plot(range(2, 11), final_np_time, label='Numpy')
-plt.plot(range(2, 11), final_custom_python_time, label='Custom python')
+plt.plot(range(2, 21), final_c_time, label='C')
+plt.plot(range(2, 21), final_np_time, label='Numpy')
+plt.plot(range(2, 21), final_custom_python_time, label='Custom python')
 plt.legend()
 plt.title("Сравнение времени умножения матриц")
 ax.set_xlabel('размер матрицы')
 ax.set_ylabel('микросекунды')
+plt.show()
 fig.savefig('graph')
