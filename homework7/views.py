@@ -3,7 +3,7 @@ from requests.exceptions import MissingSchema
 from bs4 import BeautifulSoup
 from collections import Counter
 import json
-from stop_words import *
+from stop_words import stop_words
 from http_response import HttpResponse
 
 
@@ -21,7 +21,7 @@ def get_top_words(request):
 
     soup = BeautifulSoup(r.text, 'html.parser')
     lst_of_words = soup.get_text().split()
-    lst_cleared_1_stage = list(map(lambda x: x.strip('()/.,!?<>=').lower(), lst_of_words))
+    lst_cleared_1_stage = list(map(lambda x: x.strip('()/.,!?<>=;:').lower(), lst_of_words))
     lst_cleared_2_stage = list(filter(lambda x: len(x) > 1 and x not in stop_words, lst_cleared_1_stage))
     dict_of_popular_words = dict(Counter(lst_cleared_2_stage).most_common(10))
     response = json.dumps(dict_of_popular_words, ensure_ascii=False)

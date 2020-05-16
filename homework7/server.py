@@ -11,9 +11,10 @@ server_socket.settimeout(300)
 while True:
     client_socket, addr = server_socket.accept()
     while True:
-        request = client_socket.recv(4096).decode()
+        request = client_socket.recv(4096)
         if not request:
             break
+        request = request.decode()
         response = get_top_words(json.loads(request)['data'])
         client_socket.send(str(response.data).encode('utf-8'))  # json.dumps показывает экранирующие слеши
     client_socket.close()  # зачем ?
