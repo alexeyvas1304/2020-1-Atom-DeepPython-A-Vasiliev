@@ -18,6 +18,9 @@ def get_top_words(request):
     except requests.exceptions.InvalidURL:
         print('Bad url')
         return HttpResponse(status_code=404, data=json.dumps({'Failed': 'bad request'}))
+    except requests.exceptions.ConnectionError:
+        print('Bad url')
+        return HttpResponse(status_code=404, data=json.dumps({'Failed': 'bad request'}))
 
     soup = BeautifulSoup(r.text, 'html.parser')
     lst_of_words = soup.get_text().split()
