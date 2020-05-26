@@ -1,4 +1,4 @@
 .idea/
 venv-DeepPython/
 homework2/api_conf.py
-__pycache__
+__pycache__/
